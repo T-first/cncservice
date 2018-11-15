@@ -1,20 +1,23 @@
 package com.cncservice.dao;
 
 import com.cncservice.entity.BaseConfig;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+@Repository
 public interface BaseConfigDao {
 
-    int deleteByPrimaryKey(Integer id);
+    List<BaseConfig> getBaseConfigList(String ssoid);
 
-    int insert(BaseConfig record);
+    int insertBaseConfig(@Param("kv") Map<String,String> kv,  @Param("baseConfig") BaseConfig baseConfig);
 
-    int insertSelective(BaseConfig record);
+    List<BaseConfig> updateBaseConfig(Map<String,String> BaseconfigMap);
 
-    BaseConfig selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(BaseConfig record);
-
-    int updateByPrimaryKey(BaseConfig record);
+    int delete (BaseConfig record);
 
 
 }

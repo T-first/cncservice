@@ -1,0 +1,14 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cncservice.dao.BaseConfigDao">
+    <select id="getBaseConfigList" parameterType="String" resultType="com.cncservice.entity.BaseConfig">
+        select id id,field_key fieldKey,field_value fieldValue,org_hierarchy_code orgHierarchyCode,hierarchy_code hierarchyCode, status status,ssoid ssoid from  t_fanuc_base_setting where ssoid=#{ssoid}
+    </select>
+    <insert id="insertBaseConfig"   parameterType="" useGeneratedKeys="true">
+     insert  into t_fanuc_base_setting(field_key,field_value,org_hierarchy_code,hierarchy_code,status,ssoid) values
+     <foreach collection="kv" index="key" item="value" separator=",">
+      (#{key},#{value},#{baseConfig.orgHierarchyCode},#{baseConfig.hierarchyCode},#{baseConfig.status},#{baseConfig.ssoid})
+    </foreach>
+    </insert>
+</mapper>
